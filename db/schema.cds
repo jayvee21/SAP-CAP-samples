@@ -1,7 +1,7 @@
 namespace sap.capire.bookshop;
 using { Currency, managed } from '@sap/cds/common';
 
-entity Books : managed {
+entity Books : managed, additionalInfo {
     key ID  : Integer;
     title   : localized String(111);
     descr   : localized String(1111);
@@ -28,4 +28,14 @@ entity OrderItems {
     parent  : Association to Orders;
     book    : Association to Books;
     amount  : Integer;
+}
+
+entity Movies : additionalInfo {
+    key ID  : Integer;
+    name    : String;
+}
+
+aspect additionalInfo {
+    genre       : String(100);
+    language    : String(200);
 }
