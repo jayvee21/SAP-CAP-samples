@@ -1,14 +1,16 @@
 namespace sap.capire.bookshop;
-using { Currency, managed } from '@sap/cds/common';
+using { Currency, managed, cuid } from '@sap/cds/common';
 
-entity Books : managed, additionalInfo {
-    key ID  : Integer;
-    title   : localized String(111);
-    descr   : localized String(1111);
+// Using custom Entity service
+using { sap.mycustom.reusable.Products } from './reusable/custom';
+
+entity Books : Products, additionalInfo {
     author  : Association to Authors;
-    stock   : Integer;
-    price   : Decimal(9,2);
-    currency : Currency;
+}
+
+
+entity Magazines : Products {
+    publisher: String;
 }
 
 entity Authors  : managed {
@@ -17,14 +19,12 @@ entity Authors  : managed {
     books   : Association to many Books on books.author = $self;
 }
 
-entity Orders : managed {
-    key ID  : UUID;
+entity Orders : managed, cuid {
     OrderNo : String @title:'Order Number'; //> readable key
     Items   : Composition of many OrderItems on Items.parent = $self;
 }
 
-entity OrderItems {
-    key ID  : UUID;
+entity OrderItems: cuid {
     parent  : Association to Orders;
     book    : Association to Books;
     amount  : Integer;
