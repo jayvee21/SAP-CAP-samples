@@ -10,3 +10,6 @@ Content-Type: application/json
 
 ### Check books entity that stock was reduced
 GET http://localhost:4004/admin/Books(201)
+
+### Try to get the orders
+GET http://localhost:4004/browse/Orders

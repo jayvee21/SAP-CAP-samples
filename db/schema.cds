@@ -13,6 +13,8 @@ entity Magazines : Products {
     publisher: String;
 }
 
+// Expand annotation
+@cds.autoexpose
 entity Authors  : managed {
     key ID  : Integer;
     name    : String(111);
