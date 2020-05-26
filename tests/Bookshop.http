@@ -8,6 +8,10 @@ GET http://localhost:4004/browse/Books
 GET http://localhost:4004/browse/Books?$expand=author
 
 
+
+### Browse orders
+GET http://localhost:4004/admin/Orders
+
 ### Try to insert into Books
 POST http://localhost:4004/browse/Books
 Content-Type: application/json
