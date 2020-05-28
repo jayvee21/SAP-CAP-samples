@@ -14,7 +14,9 @@
 
     // Reduce stock of books upon incoming orders
     srv.before ('CREATE', 'Orders', async (req) =>{
+        
         const txn = cds.transaction(req), order = req.data;
+     
         if (order.Items){
             const affectedRows = await txn.run(order.Items.map( item => 
                 UPDATE(Books).where({ ID:item.book_ID })

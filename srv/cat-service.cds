@@ -1,5 +1,11 @@
 using { sap.capire.bookshop as my } from '../db/schema';
 @path:'/browse' 
+
+/**
+ * Implementing custom service - different filename.
+ */
+@impl: 'my-service.js' 
+
 service CatalogService {
 
     // -- With author name
