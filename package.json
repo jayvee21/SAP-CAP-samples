@@ -19,16 +19,15 @@
   "build": "cds build/all --clean;cp gen/srv/srv/csn.json srv/gen/;cp -r gen/db/src/gen db/src",
   "cds": {
     "requires": {
-      "db": {
-        "kind": "sqlite",
-        "model": [
-          "db/",
-          "srv/"
-        ],
-        "credentials": {
-          "database": "bookshop.db"
+        "db": {
+            "kind": "sql",
+            "[production]": {
+                "kind": "hana"
+            }
+        },
+        "uaa": {
+            "kind": "xsuaa"
         }
-      }
     }
   }
 }
