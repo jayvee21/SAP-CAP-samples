@@ -20,4 +20,9 @@ service CatalogService {
     @requires_: 'authenticated-user' 
     @insertonly entity Orders as projection on my.Orders;
 
+    // Example for an instance restriction
+    annotate CatalogService.Orders with  @(restrict: [
+        { grant: 'READ', where: 'currency_code = $user.currency'  } 
+    ]);
+
 }
